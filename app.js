@@ -10,7 +10,7 @@ var app = express();
 var router = express.Router();
  
 //you need to update wp with your own database name
-var db = monk('ikarucat:1245ade@ds157444.mlab.com:57444/a2-webpro-s3-2017'); //db name here
+var db = monk('DBUsername:DBPassword@dDBUrl:DBPort/a2-webpro-s3-2017'); //db name here
  
  
 //use objects in app
@@ -33,27 +33,32 @@ app.get('/home', function(req, res){
  
 //SERVER SIDE ROUTING
 app.use('/', router);
- 
+
+//Get All
 router.get('/students', function(req, res) {
     req.db.collection('students').find({},{"limit": 100},function(e,docs){
     	res.json(docs);
 	});
 });
  
+//Get By _id
 router.get('/student/:id', function(req, res){
-  	req.db.collection('students').findById(req.params.id, function(e, doc){
-        	res.json(doc);
-  	})
+	req.db.collection('students').findOne(req.params.id, function(e, doc){
+		  res.json(doc);
+	})
 });
+
  
+//Update by _id
 router.put('/student/:id', function(req, res){
   	req.db.collection('students').update({_id: req.params.id}, {name: req.body.name, yob: req.body.yob});
-  	req.db.collection('students').findById(req.params.id, function(e, doc){
+  	req.db.collection('students').findOne(req.params.id, function(e, doc){
         	res.json(doc);
   	})
  
 });
- 
+
+//Delete by _id
 router.delete('/student/:id', function(req, res){
   	req.db.collection('students').remove({_id: req.params.id}, function(e, doc){
         	res.json(doc);
@@ -76,13 +81,14 @@ router.get('/products', function(req, res) {
 });
  
 router.get('/products/:id', function(req, res){
-  	req.db.collection('proucts').findById(req.params.id, function(e, doc){
+  	req.db.collection('proucts').findOne(req.params.id, function(e, doc){
         	res.json(doc);
   	})
 });
  
 router.put('/proucts/:id', function(req, res){
   	req.db.collection('products').update({_id: req.params.id}, {
+		  id: req.body.id,
           name: req.body.name, 
           price: req.body.price, 
           description: req.body.description, 
@@ -90,7 +96,7 @@ router.put('/proucts/:id', function(req, res){
           producer: req.body.producer,
           imageurl: req.body.imageurl,
         });
-  	req.db.collection('products').findById(req.params.id, function(e, doc){
+  	req.db.collection('products').findOne(req.params.id, function(e, doc){
         	res.json(doc);
   	})
  
@@ -117,16 +123,17 @@ router.get('/categories', function(req, res) {
 });
  
 router.get('/categories/:id', function(req, res){
-  	req.db.collection('categories').findById(req.params.id, function(e, doc){
+  	req.db.collection('categories').findOne(req.params.id, function(e, doc){
         	res.json(doc);
   	})
 });
  
 router.put('/categories/:id', function(req, res){
   	req.db.collection('categories').update({_id: req.params.id}, {
+		  id: req.body.id,
           name: req.body.name,
         });
-  	req.db.collection('categories').findById(req.params.id, function(e, doc){
+  	req.db.collection('categories').findOne(req.params.id, function(e, doc){
         	res.json(doc);
   	})
  
@@ -153,16 +160,17 @@ router.get('/shoppingCarts', function(req, res) {
 });
  
 router.get('/shoppingCarts/:id', function(req, res){
-  	req.db.collection('shoppingCarts').findById(req.params.id, function(e, doc){
+  	req.db.collection('shoppingCarts').findOne(req.params.id, function(e, doc){
         	res.json(doc);
   	})
 });
  
 router.put('/shoppingCarts/:id', function(req, res){
   	req.db.collection('shoppingCarts').update({_id: req.params.id}, {
+		  id: req.body.name,
           name: req.body.name,
         });
-  	req.db.collection('shoppingCarts').findById(req.params.id, function(e, doc){
+  	req.db.collection('shoppingCarts').findOne(req.params.id, function(e, doc){
         	res.json(doc);
   	})
  
