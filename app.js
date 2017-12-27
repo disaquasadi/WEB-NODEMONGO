@@ -10,7 +10,7 @@ var app = express();
 var router = express.Router();
  
 //you need to update wp with your own database name
-var db = monk('mongodb://DBUsername:DBPassword@DBURL'); //db name here
+var db = monk('DB_Username:DB_Password@DB_URL'); //db name here
  
  
 //use objects in app
@@ -42,7 +42,7 @@ router.get('/students', function(req, res) {
 });
  
 //Get By _id
-router.get('/student/:id', function(req, res){
+router.get('/students/:id', function(req, res){
 	req.db.collection('students').findOne(req.params.id, function(e, doc){
 		  res.json(doc);
 	})
@@ -50,7 +50,7 @@ router.get('/student/:id', function(req, res){
 
  
 //Update by _id
-router.put('/student/:id', function(req, res){
+router.put('/students/:id', function(req, res){
   	req.db.collection('students').update({_id: req.params.id}, {name: req.body.name, yob: req.body.yob});
   	req.db.collection('students').findOne(req.params.id, function(e, doc){
         	res.json(doc);
@@ -59,7 +59,7 @@ router.put('/student/:id', function(req, res){
 });
 
 //Delete by _id
-router.delete('/student/:id', function(req, res){
+router.delete('/students/:id', function(req, res){
   	req.db.collection('students').remove({_id: req.params.id}, function(e, doc){
         	res.json(doc);
   	})
@@ -81,12 +81,12 @@ router.get('/products', function(req, res) {
 });
  
 router.get('/products/:id', function(req, res){
-  	req.db.collection('proucts').findOne(req.params.id, function(e, doc){
+  	req.db.collection('products').findOne(req.params.id, function(e, doc){
         	res.json(doc);
   	})
 });
  
-router.put('/proucts/:id', function(req, res){
+router.put('/products/:id', function(req, res){
   	req.db.collection('products').update({_id: req.params.id}, {
 		  id: req.body.id,
           name: req.body.name, 
@@ -201,7 +201,7 @@ module.exports = app;
 
 app.set( 'port', ( process.env.PORT || 8080 ));
 
-// Start node server
+// Start node server at any port hosting give back
 app.listen( app.get( 'port' ), function() {
   console.log( 'Node server is running on port ' + app.get( 'port' ));
 });
