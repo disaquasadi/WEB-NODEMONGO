@@ -10,7 +10,7 @@ var app = express();
 var router = express.Router();
  
 //you need to update wp with your own database name
-var db = monk('imhikarucat:12345abcde@ds157444.mlab.com:57444/a2-webpro-s3-2017'); //db name here
+var db = monk('mongodb://imhikarucat:12345abcde@ds131237.mlab.com:31237/vu-nodejs-db'); //db name here
  
  
 //use objects in app
