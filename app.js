@@ -10,7 +10,7 @@ var app = express();
 var router = express.Router();
  
 //you need to update wp with your own database name
-var db = monk('mongodb://DB_Username:DB_Password@DB_URL'); //db URL to connect here
+var db = monk('imhikarucat:12345abcde@ds157444.mlab.com:57444/a2-webpro-s3-2017'); //db name here
  
  
 //use objects in app
@@ -148,6 +148,48 @@ router.delete('/categories/:id', function(req, res){
 router.post('/categories', function(req, res){
   	console.log(req.body);
   	req.db.collection('categories').insert(req.body, function(e, docs){
+        	res.json(docs);
+  	});
+});
+
+//ORDER
+router.get('/orders', function(req, res) {
+    req.db.collection('orders').find({},{"limit": 100},function(e,docs){
+    	res.json(docs);
+	});
+});
+ 
+router.get('/orders/:id', function(req, res){
+  	req.db.collection('orders').findOne(req.params.id, function(e, doc){
+        	res.json(doc);
+  	})
+});
+ 
+router.put('/orders/:id', function(req, res){
+  	req.db.collection('orders').update({_id: req.params.id}, {
+		  id: req.body.id,
+          name: req.body.name, 
+		  email: req.body.email,
+		  phone: req.body.phone,
+		  address: req.body.address,
+		  orderdate: req.body.orderdate,
+		  total: req.body.total,
+        });
+  	req.db.collection('orders').findOne(req.params.id, function(e, doc){
+        	res.json(doc);
+  	})
+ 
+});
+ 
+router.delete('/orders/:id', function(req, res){
+  	req.db.collection('orders').remove({_id: req.params.id}, function(e, doc){
+        	res.json(doc);
+  	})
+});
+ 
+router.post('/orders', function(req, res){
+  	console.log(req.body);
+  	req.db.collection('orders').insert(req.body, function(e, docs){
         	res.json(docs);
   	});
 });
