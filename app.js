@@ -4,6 +4,7 @@ var bodyParser = require('body-parser');
 var mongo = require('mongodb');
 var monk = require('monk');
 var path = require('path');
+var http = require('http').Server(app);
 
 //create neccessary objects
 var app = express();
@@ -29,10 +30,26 @@ router.get('/students', function(req, res, next) {
    next();
 });
 
-router.get('products', function(req, res, next){
+router.get('/products', function(req, res, next){
     console.log(req.method);
     next();
-})
+});
+
+router.get('/categories', function(req, res, next){
+    console.log(req.method);
+    next();
+});
+
+router.get('/shoppingcarts', function(req, res, next){
+    console.log(req.method);
+    next();
+});
+
+router.get('/orders', function(req, res, next){
+    console.log(req.method);
+    next();
+});
+
 
 ////////////////
 //STUDENTS
