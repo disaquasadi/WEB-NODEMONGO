@@ -10,7 +10,7 @@ var app = express();
 var router = express.Router();
  
 //you need to update wp with your own database name
-var db = monk('mongodb://DB_Username:DB_Password@DB_URL'); //db name here
+var db = monk('mongodb://imhikarucat:12345abcde@ds131237.mlab.com:31237/vu-nodejs-db'); //db name here
  
  
 //use objects in app
@@ -42,7 +42,7 @@ router.get('/students', function(req, res) {
 });
  
 //Get By _id
-router.get('/students/:id', function(req, res){
+router.get('/student/:id', function(req, res){
 	req.db.collection('students').findOne(req.params.id, function(e, doc){
 		  res.json(doc);
 	})
@@ -50,7 +50,7 @@ router.get('/students/:id', function(req, res){
 
  
 //Update by _id
-router.put('/students/:id', function(req, res){
+router.put('/student/:id', function(req, res){
   	req.db.collection('students').update({_id: req.params.id}, {name: req.body.name, yob: req.body.yob});
   	req.db.collection('students').findOne(req.params.id, function(e, doc){
         	res.json(doc);
@@ -59,7 +59,7 @@ router.put('/students/:id', function(req, res){
 });
 
 //Delete by _id
-router.delete('/students/:id', function(req, res){
+router.delete('/student/:id', function(req, res){
   	req.db.collection('students').remove({_id: req.params.id}, function(e, doc){
         	res.json(doc);
   	})
@@ -81,12 +81,12 @@ router.get('/products', function(req, res) {
 });
  
 router.get('/products/:id', function(req, res){
-  	req.db.collection('products').findOne(req.params.id, function(e, doc){
+  	req.db.collection('proucts').findOne(req.params.id, function(e, doc){
         	res.json(doc);
   	})
 });
  
-router.put('/products/:id', function(req, res){
+router.put('/proucts/:id', function(req, res){
   	req.db.collection('products').update({_id: req.params.id}, {
 		  id: req.body.id,
           name: req.body.name, 
@@ -152,48 +152,6 @@ router.post('/categories', function(req, res){
   	});
 });
 
-//ORDER
-router.get('/orders', function(req, res) {
-    req.db.collection('orders').find({},{"limit": 100},function(e,docs){
-    	res.json(docs);
-	});
-});
- 
-router.get('/orders/:id', function(req, res){
-  	req.db.collection('orders').findOne(req.params.id, function(e, doc){
-        	res.json(doc);
-  	})
-});
- 
-router.put('/orders/:id', function(req, res){
-  	req.db.collection('orders').update({_id: req.params.id}, {
-		  id: req.body.id,
-          name: req.body.name, 
-		  email: req.body.email,
-		  phone: req.body.phone,
-		  address: req.body.address,
-		  orderdate: req.body.orderdate,
-		  total: req.body.total,
-        });
-  	req.db.collection('orders').findOne(req.params.id, function(e, doc){
-        	res.json(doc);
-  	})
- 
-});
- 
-router.delete('/orders/:id', function(req, res){
-  	req.db.collection('orders').remove({_id: req.params.id}, function(e, doc){
-        	res.json(doc);
-  	})
-});
- 
-router.post('/orders', function(req, res){
-  	console.log(req.body);
-  	req.db.collection('orders').insert(req.body, function(e, docs){
-        	res.json(docs);
-  	});
-});
-
 //SHOPPING CART
 router.get('/shoppingCarts', function(req, res) {
     req.db.collection('shoppingCarts').find({},{"limit": 100},function(e,docs){
@@ -243,7 +201,7 @@ module.exports = app;
 
 app.set( 'port', ( process.env.PORT || 8080 ));
 
-// Start node server at any port hosting give back
+// Start node server
 app.listen( app.get( 'port' ), function() {
   console.log( 'Node server is running on port ' + app.get( 'port' ));
 });
