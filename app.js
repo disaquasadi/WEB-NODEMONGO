@@ -282,6 +282,7 @@ router.post('/orders', function(req, res){
 });
 ////////////////
 
+module.exports = app;
 app.set( 'port', ( process.env.PORT || 8080 ));
 
 // Start node server
