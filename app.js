@@ -281,5 +281,10 @@ router.post('/orders', function(req, res){
 	});
 });
 ////////////////
-module.exports = app;
-app.listen(8080);
+
+app.set( 'port', ( process.env.PORT || 8080 ));
+
+// Start node server
+app.listen( app.get( 'port' ), function() {
+  console.log( 'Node server is running on port ' + app.get( 'port' ));
+});
