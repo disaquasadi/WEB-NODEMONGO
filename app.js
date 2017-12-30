@@ -4,35 +4,25 @@ var bodyParser = require('body-parser');
 var mongo = require('mongodb');
 var monk = require('monk');
 var path = require('path');
-// var http = require('http').Server(app);
+var http = require('http').Server(app);
 
 //create neccessary objects
 var app = express();
 var router = express.Router();
 
-var http = require('http');
 
-// var app = http.createServer(function(req,res){
-//     res.setHeader('content-type', 'application/json; charset=utf-8');
-//     res.send(JSON.stringify({ a: 1 }));
-// });
+//you need to update wp with your own database name
+var db = monk('mongodb://imhikarucat:12345abcde@ds157444.mlab.com:57444/a2-webpro-s3-2017');
+
 
 //use objects in app
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(function (req, res) {
-    res.setHeader('Content-Type', 'application/json');
-    res.setHeader('Accecpt', 'application/json');
-    res.send(JSON.stringify({}));
-  })
 
 app.use(function(req,res,next){
     req.db = db;
     next();
 });
-
-//you need to update wp with your own database name
-var db = monk('mongodb://imhikarucat:12345abcde@ds157444.mlab.com:57444/a2-webpro-s3-2017');
 
 //SERVER SIDE ROUTING
 router.get('/students', function(req, res, next) {
@@ -60,10 +50,11 @@ router.get('/orders', function(req, res, next){
     next();
 });
 
-app.use('/', router);
 
 ////////////////
 //STUDENTS
+app.use('/', router);
+
 //get all
 router.get('/students', function(req, res) {
     req.db.collection('students').find({},{"limit": 100},function(e,docs){
@@ -106,6 +97,8 @@ router.post('/students', function(req, res){
 
 ////////////////
 //PRODUCTS
+app.use('/', router);
+
 //get all
 router.get('/products', function(req, res) {
     req.db.collection('products').find({},{"limit": 100},function(e,docs){
@@ -206,6 +199,8 @@ router.post('/categories', function(req, res){
 
 ////////////////
 //SHOPPING CARTS
+app.use('/', router);
+
 //get all
 router.get('/shoppingcarts', function(req, res) {
     req.db.collection('shoppingcarts').find({},{"limit": 100},function(e,docs){
@@ -258,6 +253,8 @@ router.post('/shoppingcarts', function(req, res){
 
 ////////////////
 //ORDERS
+app.use('/', router);
+
 //get all
 router.get('/orders', function(req, res) {
     req.db.collection('orders').find({},{"limit": 100},function(e,docs){
