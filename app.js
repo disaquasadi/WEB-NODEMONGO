@@ -19,10 +19,10 @@ var router = express.Router();
 //use objects in app
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(function (req, res) {
-    res.setHeader('Content-Type', 'application/json');
-    res.send(JSON.stringify({}));
-  })
+// app.use(function (req, res) {
+//     res.setHeader('Content-Type', 'application/json');
+//     res.send(JSON.stringify({}));
+//   })
 
 app.use(function(req,res,next){
     req.db = db;
