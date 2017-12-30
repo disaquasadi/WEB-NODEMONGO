@@ -21,7 +21,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(function (req, res) {
 	res.setHeader('Content-Type', 'application/json');
-	res.write('you posted:\n');
   	res.end(JSON.stringify(req.body, null, 2));
     // res.send(JSON.stringify({}));
   })
