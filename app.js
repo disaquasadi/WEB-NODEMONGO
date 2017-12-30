@@ -273,8 +273,15 @@ router.get('/orders/:id', function(req, res){
 router.put('/orders/:id', function(req, res){
     req.db.collection('orders').update({_id: req.params.id}, 
         {
-            id: req.body.id,
-            name: req.body.name, 
+        
+			id: req.body.id,
+			name: req.body.name, 
+			email: req.body.email, 
+			phone: req.body.phone, 
+			address: req.body.address, 
+			orderDate: req.body.orderDate,
+			total: req.body.total,
+			imageUrl: req.body.imageUrl,
         });
 	req.db.collection('orders').findOne(req.params.id, function(e, doc){
 		res.json(doc);
