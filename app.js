@@ -114,17 +114,18 @@ router.get('/products/:id', function(req, res){
 });
 
 //update (by _id)
-router.put('/products/:id', function(req, res){
+router.put('/products/', function(req, res){
     req.db.collection('products').update({_id: req.params.id}, 
         {
+			_id: req.body._id,
             id: req.body.id,
             name: req.body.name, 
             price: req.body.price, 
             description: req.body.description, 
             brand: req.body.brand, 
             producer: req.body.producer,
-            inventory: req.body.inventory,
-            imageurl: req.body.imageurl,
+            exist: req.body.exist,
+            imageUrl: req.body.imageUrl,
         });
 	req.db.collection('products').findOne(req.params.id, function(e, doc){
 		res.json(doc);
@@ -225,8 +226,8 @@ router.put('/shoppingcarts/:id', function(req, res){
             description: req.body.description, 
             brand: req.body.brand, 
             producer: req.body.producer,
-            inventory: req.body.inventory,
-            imageurl: req.body.imageurl,
+            exist: req.body.exist,
+            imageUrl: req.body.imageUrl,
         });
 	req.db.collection('shoppingcarts').findOne(req.params.id, function(e, doc){
 		res.json(doc);
