@@ -11,7 +11,7 @@ var app = express();
 var router = express.Router();
 
 // var http = require('http');
-// var app = http.createServer(fu	nction(req,res){
+// var app = http.createServer(function(req,res){
 //     res.setHeader('content-type', 'application/json; charset=utf-8');
 //     res.send(JSON.stringify({ a: 1 }));
 // });
@@ -20,8 +20,7 @@ var router = express.Router();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(function (req, res) {
-	res.setHeader('content-type', 'application/json');
-  	// res.body(JSON.stringify(req.body, null, 2));
+    res.setHeader('Content-Type', 'application/json');
     // res.send(JSON.stringify({}));
   })
 
