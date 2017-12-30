@@ -13,10 +13,7 @@ var router = express.Router();
 var http = require('http');
 
 var app = http.createServer(function(req,res){
-    res.setHeader(
-        'Content-Type', 'application/json',
-        'Accept', 'application/json'
-    );
+    res.setHeader('content-type', 'application/json; charset=utf-8');
     res.send(JSON.stringify({ a: 1 }));
 });
 
