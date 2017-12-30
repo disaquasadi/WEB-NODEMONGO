@@ -26,7 +26,7 @@ var db = monk('mongodb://imhikarucat:12345abcde@ds157444.mlab.com:57444/a2-webpr
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(function (req, res) {
-    res.setHeader('Content-Type', 'text/plain')
+    res.setHeader('Content-Type', 'application/json');
     res.send(JSON.stringify({}));
   })
 
