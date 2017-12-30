@@ -20,7 +20,7 @@ var router = express.Router();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(function (req, res) {
-	res.setHeader('Content-Type: application/json');
+	res.setHeader('Content-Type; Accept', 'application/json; application/json');
   	res.body(JSON.stringify(req.body));
     // res.send(JSON.stringify({}));
   })
