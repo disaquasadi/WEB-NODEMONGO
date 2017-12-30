@@ -10,6 +10,16 @@ var http = require('http').Server(app);
 var app = express();
 var router = express.Router();
 
+var http = require('http');
+
+var app = http.createServer(function(req,res){
+    res.setHeader(
+        'Content-Type', 'application/json',
+        'Accept', 'application/json'
+    );
+    res.send(JSON.stringify({ a: 1 }));
+});
+
 
 //you need to update wp with your own database name
 var db = monk('mongodb://imhikarucat:12345abcde@ds157444.mlab.com:57444/a2-webpro-s3-2017');
