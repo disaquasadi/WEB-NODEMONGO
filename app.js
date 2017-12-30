@@ -25,30 +25,30 @@ app.use(function(req,res,next){
 });
 
 //SERVER SIDE ROUTING
-router.get('/students', function(req, res, next) {
-   console.log(req.method);
-   next();
-});
+// router.get('/students', function(req, res, next) {
+//    console.log(req.method);
+//    next();
+// });
 
-router.get('/products', function(req, res, next){
-    console.log(req.method);
-    next();
-});
+// router.get('/products', function(req, res, next){
+//     console.log(req.method);
+//     next();
+// });
 
-router.get('/categories', function(req, res, next){
-    console.log(req.method);
-    next();
-});
+// router.get('/categories', function(req, res, next){
+//     console.log(req.method);
+//     next();
+// });
 
-router.get('/shoppingcarts', function(req, res, next){
-    console.log(req.method);
-    next();
-});
+// router.get('/shoppingcarts', function(req, res, next){
+//     console.log(req.method);
+//     next();
+// });
 
-router.get('/orders', function(req, res, next){
-    console.log(req.method);
-    next();
-});
+// router.get('/orders', function(req, res, next){
+//     console.log(req.method);
+//     next();
+// });
 
 
 ////////////////
