@@ -17,16 +17,12 @@ var http = require('http');
 //     res.send(JSON.stringify({ a: 1 }));
 // });
 
-
-//you need to update wp with your own database name
-var db = monk('mongodb://imhikarucat:12345abcde@ds157444.mlab.com:57444/a2-webpro-s3-2017');
-
-
 //use objects in app
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(function (req, res) {
     res.setHeader('Content-Type', 'application/json');
+    res.setHeader('Accecpt', 'application/json');
     res.send(JSON.stringify({}));
   })
 
@@ -34,6 +30,9 @@ app.use(function(req,res,next){
     req.db = db;
     next();
 });
+
+//you need to update wp with your own database name
+var db = monk('mongodb://imhikarucat:12345abcde@ds157444.mlab.com:57444/a2-webpro-s3-2017');
 
 //SERVER SIDE ROUTING
 router.get('/students', function(req, res, next) {
