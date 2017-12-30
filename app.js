@@ -114,10 +114,9 @@ router.get('/products/:id', function(req, res){
 });
 
 //update (by _id)
-router.put('/products/', function(req, res){
+router.put('/products/:id', function(req, res){
     req.db.collection('products').update({_id: req.params.id}, 
         {
-			_id: req.body._id,
             id: req.body.id,
             name: req.body.name, 
             price: req.body.price, 
