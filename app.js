@@ -281,7 +281,7 @@ router.put('/orders/:id', function(req, res){
 			address: req.body.address, 
 			orderDate: req.body.orderDate,
 			total: req.body.total,
-			imageUrl: req.body.imageUrl,
+	    		status: req.body.status,
         });
 	req.db.collection('orders').findOne(req.params.id, function(e, doc){
 		res.json(doc);
