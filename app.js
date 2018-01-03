@@ -96,6 +96,96 @@ router.post('/students', function(req, res){
 ////////////////
 
 ////////////////
+//QUESTIONS
+app.use('/', router);
+
+//get all
+router.get('/questions', function(req, res) {
+    req.db.collection('questions').find({},{"limit": 100},function(e,docs){
+        res.json(docs);
+    });
+});
+
+//get by _id
+router.get('/questions/:id', function(req, res){
+	req.db.collection('questions').findOne(req.params.id, function(e, doc){
+		res.json(doc);
+	})
+});
+
+//update (by _id)
+router.put('/questions/:id', function(req, res){
+	req.db.collection('questions').update({_id: req.params.id}, {qid: req.body.qid, question: req.body.question});
+	req.db.collection('questions').findOne(req.params.id, function(e, doc){
+		res.json(doc);
+	})
+
+});
+
+//delete (by _id)
+router.delete('/questions/:id', function(req, res){
+	req.db.collection('questions').remove({_id: req.params.id}, function(e, doc){
+		res.json(doc);
+	})
+});
+
+//create
+router.post('/questions', function(req, res){
+
+	console.log(req.body);
+	req.db.collection('questions').insert(req.body, function(e, docs){
+		res.json(docs);
+	});
+});
+////////////////
+
+////////////////
+//ANSWERS
+app.use('/', router);
+
+//get all
+router.get('/answers', function(req, res) {
+    req.db.collection('answers').find({},{"limit": 100},function(e,docs){
+        res.json(docs);
+    });
+});
+
+//get by _id
+router.get('/answers/:id', function(req, res){
+	req.db.collection('answers').findOne(req.params.id, function(e, doc){
+		res.json(doc);
+	})
+});
+
+//update (by _id)
+router.put('/answers/:id', function(req, res){
+	req.db.collection('answers').update({_id: req.params.id}, {aid: req.body.aid, answer: req.body.answer, correctcheck: req.body.correctcheck, qid: req.body.qid});
+	req.db.collection('answers').findOne(req.params.id, function(e, doc){
+		res.json(doc);
+	})
+
+});
+
+//delete (by _id)
+router.delete('/answers/:id', function(req, res){
+	req.db.collection('answers').remove({_id: req.params.id}, function(e, doc){
+		res.json(doc);
+	})
+});
+
+//create
+router.post('/answers', function(req, res){
+
+	console.log(req.body);
+	req.db.collection('answers').insert(req.body, function(e, docs){
+		res.json(docs);
+	});
+});
+////////////////
+
+
+
+////////////////
 //PRODUCTS
 app.use('/', router);
 
