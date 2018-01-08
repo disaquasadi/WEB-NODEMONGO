@@ -52,7 +52,11 @@ router.get('/students/:id', function(req, res){
 
 //update (by _id)
 router.put('/students/:id', function(req, res){
-	req.db.collection('students').update({_id: req.params.id}, {name: req.body.name, yob: req.body.yob});
+	req.db.collection('students').update({_id: req.params.id}, {
+		//constructor props
+		name: req.body.name, 
+		yob: req.body.yob,
+	});
 	req.db.collection('students').findOne(req.params.id, function(e, doc){
 		res.json(doc);
 	})
