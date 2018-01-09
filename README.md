@@ -31,7 +31,7 @@ INSERT: ```db.course.insert({"name": "hello","credit": 15})
 
 FINDALL: ```db.course.find()
 
-FIND by name: ```db.course.find({"name": "hello","credit": 15})
+FIND by name: ```db.course.find({"name": "hello"})
 
 
 USING NODE JS CONNECT TO MONGODB
