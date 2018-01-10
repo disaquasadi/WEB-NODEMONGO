@@ -27,11 +27,11 @@ STEP3: create Collection
 
 ALL SYNTAX
 
-INSERT: ```db.course.insert({"name": "hello","credit": 15})
+INSERT: ```db.course.insert({"name": "hello","credit": 15})```
 
-FINDALL: ```db.course.find()
+FINDALL: ```db.course.find()```
 
-FIND by name: ```db.course.find({"name": "hello"})
+FIND by name: ```db.course.find({"name": "hello"})```
 
 
 USING NODE JS CONNECT TO MONGODB
