@@ -24,9 +24,9 @@ app.use(function(req,res,next){
     next();
 });
 
-//STUDENTS
 app.use('/', router);
 
+//STUDENTS
 //create
 router.post('/students', function(req, res){
 
