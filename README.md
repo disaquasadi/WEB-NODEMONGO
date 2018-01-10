@@ -8,7 +8,7 @@ STEP 2: FIND DIRECTORY OF THIS DB
 
 STEP 3: SETUP MONGODB PATH
 
-```mongod --dbpath =path```
+```mongod --dbpath =(put db folder path here)```
 
 
 NEWTAB-iNSERT, CREATE db
